@@ -1,0 +1,86 @@
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --accent-color: #646cff;
+  --panel-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  background: linear-gradient(to right, #646cff, #9f9eff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+main {
+  flex: 1;
+  position: relative;
+  display: flex;
+}
+
+#map {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  pointer-events: none; /* Let clicks pass through if needed, but we might want it interactive later */
+}
+
+h3 {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
+#region-details {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.highlight {
+  color: #9f9eff;
+  font-weight: bold;
+}

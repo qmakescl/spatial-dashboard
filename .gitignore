@@ -1,0 +1,35 @@
+# Data
+datasets/
+export/
+!export/spatial/sido_mapping.json
+!export/spatial/sigungu/20240630_sigungu_simplified.json
+
+# If you wanted to keep the simplified data in repo as per previous context (we moved it to dashboard/public/data anyway)
+# But let's check: users said "exclude datasets folder".
+# The user said "dataset @[datasets/spatial/sigungu] ... files require login so do not sync datasets folder".
+# The "export" folder contains processed data which technically isn't the raw restricted data.
+# However, usually large geojson files might be better excluded if they are huge, but these seem to be the "product".
+# The user specifically said "datasets folder".
+# I will strictly ignore `datasets/`.
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.uv/
+
+# Node
+node_modules/
+dist/
+.DS_Store
+.env
+
+# Editor
+.idea/
+.vscode/
+
+# Dashboard specific
+dashboard/node_modules/
+dashboard/dist/
