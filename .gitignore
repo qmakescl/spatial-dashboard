@@ -1,8 +1,8 @@
 # Data
 datasets/
-export/
-!export/spatial/sido_mapping.json
-!export/spatial/sigungu/20240630_sigungu_simplified.json
+#export/
+#!export/spatial/sido_mapping.json
+#!export/spatial/sigungu/20240630_sigungu_simplified.json
 
 # If you wanted to keep the simplified data in repo as per previous context (we moved it to dashboard/public/data anyway)
 # But let's check: users said "exclude datasets folder".

@@ -40,5 +40,5 @@ npm run dev
 
 ---
 
-> 이 내용은 Q의 지침하에 Google Antigravity가 작성한 것임을 표기한다.
+> 이 내용은 Q의 지침하에 Google Antigravity가 작성함.
 > This content was written by Google Antigravity under the guidance of Q.
