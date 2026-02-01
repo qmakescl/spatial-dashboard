@@ -1,27 +1,91 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sigungu Spatial Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  </head>
-  <body>
-    <div id="app">
-      <header>
-        <h1>Spatial Dashboard</h1>
-        <p>South Korea Sigungu Visualization</p>
-      </header>
-      <main>
-        <div id="map"></div>
-        <div id="info-panel" class="glass-panel">
-          <h3>Region Info</h3>
-          <div id="region-details">Hover over a region</div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sigungu Spatial Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+
+<body>
+  <div id="layout">
+    <aside id="sidebar">
+      <h2 class="brand">🚀 Spatial Dash</h2>
+
+      <div class="control-section">
+        <label class="section-label">Service</label>
+        <select id="service-select" class="dropdown">
+          <option value="od-2024" selected>시군구별 세대이동-2024</option>
+        </select>
+      </div>
+
+      <div id="controls-container">
+        <!-- Controls for OD Visualization -->
+        <div class="control-section">
+          <label class="section-label">Flow Direction</label>
+          <div class="toggle-container">
+            <input type="radio" id="mode-in" name="flow-mode" value="in" checked>
+            <label for="mode-in" class="toggle-btn">전입 (Inflow)</label>
+
+            <input type="radio" id="mode-out" name="flow-mode" value="out">
+            <label for="mode-out" class="toggle-btn">전출 (Outflow)</label>
+          </div>
+          <p class="description">
+            <span id="mode-desc">지역으로 들어오는 인구</span>를 확인합니다.
+          </p>
         </div>
-      </main>
-    </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+      </div>
+
+      <div id="info-panel">
+        <div class="panel-header">Selected Region</div>
+        <div id="region-details">
+          <div class="placeholder-text">지도에서 지역을 클릭하여<br>이동량을 확인하세요.</div>
+        </div>
+
+        <!-- Moved Table Panel into Sidebar -->
+        <div id="sidebar-table-container" class="hidden">
+          <div class="sidebar-divider"></div>
+          <div class="panel-header-row small-header">
+            <h3 style="margin:0; font-size:0.9rem;">TOP/BOTTOM 20</h3>
+            <button id="btn-export" class="btn-xs">Excel</button>
+          </div>
+          <div class="sidebar-table-scroll">
+            <table id="stats-table">
+              <thead>
+                <tr>
+                  <th style="width:15%">#</th>
+                  <th>지역</th>
+                  <th>이동</th>
+                  <th>증감</th>
+                </tr>
+              </thead>
+              <tbody id="stats-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="legend-wrapper">
+        <label class="section-label">Legend (Population)</label>
+        <div id="legend"></div>
+      </div>
+
+      <div class="footer">
+        Based on 2024 Household Movement Data
+      </div>
+
+    </aside>
+    <main id="main-content">
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>

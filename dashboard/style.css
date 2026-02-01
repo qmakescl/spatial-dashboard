@@ -1,86 +1,319 @@
 :root {
-  --bg-color: #1a1a1a;
-  --text-color: #ffffff;
-  --accent-color: #646cff;
-  --panel-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --bg-color: #f8f9fa;
+  --sidebar-width: 300px;
+  --primary-color: #3b82f6;
+  --text-color: #1f2937;
+  --border-color: #e5e7eb;
 }
 
-body {
+body,
+html {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--text-color);
+}
+
+#layout {
+  display: flex;
   height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+#sidebar {
+  width: var(--sidebar-width);
+  background: white;
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-header {
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: var(--glass-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  background: linear-gradient(to right, #646cff, #9f9eff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-main {
-  flex: 1;
-  position: relative;
-  display: flex;
-}
-
-#map {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-/* Glassmorphism Panel */
-.glass-panel {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 300px;
-  padding: 20px;
-  background: var(--panel-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  border: var(--glass-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
   z-index: 1000;
-  pointer-events: none; /* Let clicks pass through if needed, but we might want it interactive later */
 }
 
-h3 {
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 10px;
+  margin-bottom: 2rem;
+  color: #111827;
 }
 
-#region-details {
-  font-size: 1.1rem;
+.control-section {
+  margin-bottom: 2rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+/* Toggle Switch */
+.toggle-container {
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.toggle-container input {
+  display: none;
+}
+
+.toggle-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #6b7280;
+}
+
+input:checked+.toggle-btn {
+  background: white;
+  color: var(--primary-color);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+#mode-desc {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Info Panel */
+#info-panel {
+  background: #f9fafb;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.panel-header {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.placeholder-text {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 2rem;
   line-height: 1.5;
 }
 
-.highlight {
-  color: #9f9eff;
-  font-weight: bold;
+.region-stat {
+  margin-bottom: 1rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.stat-diff {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.diff-up {
+  color: #10b981;
+}
+
+.diff-down {
+  color: #ef4444;
+}
+
+/* Legend */
+#legend-wrapper {
+  margin-top: 1rem;
+}
+
+#legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+}
+
+.footer {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: #9ca3af;
+  text-align: center;
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+
+/* Map */
+#map-container {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  min-height: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Leaflet Custom Overrides */
+.leaflet-container {
+  background: #111827;
+}
+
+/* --- Sidebar Table Styles --- */
+#sidebar-table-container {
+  margin-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* Take remaining space in info-panel if needed */
+  overflow: hidden;
+  /* For inner scrolling */
+}
+
+#sidebar-table-container.hidden {
+  display: none;
+}
+
+.sidebar-divider {
+  display: none;
+}
+
+.small-header {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0.5rem;
+}
+
+.small-header h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0;
+}
+
+.btn-xs {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-xs:hover {
+  background-color: #059669;
+}
+
+.sidebar-table-scroll {
+  /* Limit height so sidebar doesn't explode */
+  max-height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #eee;
+}
+
+#stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+#stats-table th {
+  background-color: #f9fafb;
+  position: sticky;
+  top: 0;
+  padding: 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+#stats-table td {
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: center;
+  /* Compact */
+}
+
+#stats-table td:nth-child(2) {
+  text-align: left;
+  /* Region Name */
+}
+
+/* Adjust Sidebar to allow growing content */
+#sidebar {
+  /* overflow-y: auto;  Already handled by flex content? */
+  /* Sidebar is flex column. We want info-panel to take available space? */
+  overflow: hidden;
+}
+
+#info-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  /* restrict height */
+  /* transition? */
 }
