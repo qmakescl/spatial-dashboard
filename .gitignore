@@ -33,3 +33,7 @@ dist/
 # Dashboard specific
 dashboard/node_modules/
 dashboard/dist/
+
+
+
+.agent/
