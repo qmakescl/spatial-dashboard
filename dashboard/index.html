@@ -14,7 +14,7 @@
 <body>
   <div id="layout">
     <aside id="sidebar">
-      <h2 class="brand">🚀 Spatial Dash</h2>
+      <h2 class="brand">🚀 시군구별 공간정보</h2>
 
       <div class="control-section">
         <label class="section-label">Service</label>
@@ -69,10 +69,6 @@
         </div>
       </div>
 
-      <div id="legend-wrapper">
-        <label class="section-label">Legend (Population)</label>
-        <div id="legend"></div>
-      </div>
 
       <div class="footer">
         Based on 2024 Household Movement Data
@@ -82,6 +78,11 @@
     <main id="main-content">
       <div id="map-container">
         <div id="map"></div>
+        <!-- Floating Legend -->
+        <div id="legend-overlay">
+          <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#333;">Population</div>
+          <div id="legend"></div>
+        </div>
       </div>
     </main>
   </div>

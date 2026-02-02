@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 // ---------------------------------------------------------
 const map = L.map('map').setView([36.0, 127.8], 7); // Center of Korea roughly
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 20
@@ -85,9 +85,9 @@ function styleFeature(feature) {
     // Default Style
     let style = {
         weight: 1,
-        color: '#444',
-        fillOpacity: 0.3,
-        fillColor: '#333'
+        color: '#888', // Lighter border for light mode
+        fillOpacity: 0.1,
+        fillColor: '#fff'
     };
 
     // If a region is selected, color others based on flow
@@ -110,10 +110,10 @@ function styleFeature(feature) {
                 style.color = '#555';
             } else {
                 // Not connected regions -> White
-                style.fillOpacity = 0.5;
+                style.fillOpacity = 0.9;
                 style.fillColor = '#ffffff';
                 style.weight = 1;
-                style.color = '#ddd';
+                style.color = '#444'; // Same as default/connected border
             }
         }
     }
@@ -199,12 +199,15 @@ function updateTooltip(e, props) {
             const diffSign = flow.diff > 0 ? '▲' : (flow.diff < 0 ? '▼' : '-');
             const diffColor = flow.diff > 0 ? 'red' : (flow.diff < 0 ? 'blue' : 'gray');
 
+            const estNote = flow.est ? '<div style="color:#f59e0b; font-size:0.8em; margin-top:2px;">* 분구로 인한 변화량 추정</div>' : '';
+
             content += `
         <div>${label} 인구: ${flow.val.toLocaleString()}명</div>
         <div>${label} 세대: ${flow.hh_cnt.toLocaleString()}세대</div>
         <div style="font-size:0.8em; color:${diffColor}">
           전년대비: ${diffSign} ${Math.abs(flow.diff).toLocaleString()}
         </div>
+        ${estNote}
       `;
         }
     }
@@ -314,12 +317,15 @@ function updateTable(adminCode) {
             name: getRegionNameByAdminCode(code),
             val: flows[code].val,
             hh_cnt: flows[code].hh_cnt,
-            diff: flows[code].diff
+            val: flows[code].val,
+            hh_cnt: flows[code].hh_cnt,
+            diff: flows[code].diff,
+            est: flows[code].est
         };
     });
 
-    // Sort by val desc
-    rows.sort((a, b) => b.val - a.val);
+    // Sort by diff desc
+    rows.sort((a, b) => b.diff - a.diff);
 
     // Top 20 & Bottom 20
     const top20 = rows.slice(0, 20);
@@ -343,6 +349,7 @@ function updateTable(adminCode) {
             <td>${r.val.toLocaleString()}</td>
             <td style="color:${r.diff > 0 ? '#10b981' : (r.diff < 0 ? '#ef4444' : '#9ca3af')}">
                 ${r.diff > 0 ? '+' : ''}${r.diff.toLocaleString()}
+                ${r.est ? '<span style="color:#f59e0b; font-size:0.75em" title="분구로 인한 변화량 추정">*</span>' : ''}
             </td>
         </tr>
     `).join('');
@@ -403,8 +410,8 @@ function setupControls() {
 // Color Scale
 // Bins: 10, 50, 100, 500, 1000, 5000, 10000
 const bins = [10, 50, 100, 500, 1000, 5000];
-const colorsIn = ['#d1fae5', '#a7f3d0', '#6ee7b7', '#34d399', '#10b981', '#059669', '#047857']; // Greenish
-const colorsOut = ['#dbeafe', '#bfdbfe', '#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8']; // Blueish
+const colorsIn = ['#dbeafe', '#bfdbfe', '#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8']; // Blueish
+const colorsOut = ['#fee2e2', '#fecaca', '#fca5a5', '#f87171', '#ef4444', '#dc2626', '#b91c1c']; // Redish
 
 function getColor(d) {
     const palette = state.mode === 'in' ? colorsIn : colorsOut;

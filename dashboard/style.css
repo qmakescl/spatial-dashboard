@@ -214,7 +214,26 @@ input:checked+.toggle-btn {
 
 /* Leaflet Custom Overrides */
 .leaflet-container {
-  background: #111827;
+  background: #f8f9fa;
+}
+
+/* Floating Legend Overlay */
+#legend-overlay {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  /* Above map */
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  pointer-events: auto;
+}
+
+#legend-overlay .legend-item {
+  margin-bottom: 4px;
 }
 
 /* --- Sidebar Table Styles --- */
