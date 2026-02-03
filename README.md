@@ -44,7 +44,7 @@ pip install pandas openpyxl
 이 프로젝트는 대용량 통계 데이터(CSV)를 웹 최적화된 JSON 파일로 변환하여 사용합니다.
 
 1.  **데이터 다운로드**
-    * (센서스경계)시군구경계 : [브이월드 공간정보 다운로드](https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?searchKeyword=%EC%84%BC%EC%84%9C%EC%8A%A4&searchSvcCde=&searchOrganization=&searchBrmCode=&searchTagList=&searchFrm=&pageIndex=1&gidmCd=&gidsCd=&sortType=00&svcCde=MK&dsId=30015&listPageIndex=1))
+    * (센서스경계)시군구경계 : [브이월드 공간정보 다운로드](https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?searchKeyword=%EC%84%BC%EC%84%9C%EC%8A%A4&searchSvcCde=&searchOrganization=&searchBrmCode=&searchTagList=&searchFrm=&pageIndex=1&gidmCd=&gidsCd=&sortType=00&svcCde=MK&dsId=30015&listPageIndex=1)
     * 인구이동데이터셋 - 세대관련 년간자료 : [데이터처 마이크로데이터 통합서비스](https://mdis.mods.go.kr/ofrData/selectOfrDataDetail.do?survId=23&itmDiv=1&nPage=3&itemId=2001&itemNm=%EC%9D%B8%EA%B5%AC)
 
 2.  **데이터 위치**
